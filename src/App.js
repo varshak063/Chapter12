@@ -8,6 +8,9 @@ import { Error } from "./components/Error";
 import { RestroMenuPage } from "./components/RestroMenuPage";
 import { Shimmer } from "./components/Shimmer";
 import { UserContext } from "./utils/UserContext";
+import { Provider } from "react-redux";
+import { appStore } from "./utils/appStore";
+import { CartPage } from "./components/CartPage";
 
 const Grocery = lazy(() => import("./components/Grocery"));
 const About = lazy(() => import("./components/About"));
@@ -21,14 +24,16 @@ const AppLayout = () => {
     setUserName(data.name);
   }, []);
   return (
-    <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
-      <div className="app">
-        {/* <UserContext.Provider value={{ loggedInUser: "XYZ" }}> */}
-        <Header />
-        {/* </UserContext.Provider> */}
-        <Outlet />
-      </div>
-    </UserContext.Provider>
+    <Provider store={appStore}>
+      <UserContext.Provider value={{ loggedInUser: userName, setUserName }}>
+        <div className="app">
+          {/* <UserContext.Provider value={{ loggedInUser: "XYZ" }}> */}
+          <Header />
+          {/* </UserContext.Provider> */}
+          <Outlet />
+        </div>
+      </UserContext.Provider>
+    </Provider>
   );
 };
 const appRouter = createBrowserRouter([
@@ -60,6 +65,10 @@ const appRouter = createBrowserRouter([
       {
         path: "/restromenu/:restroId",
         element: <RestroMenuPage />,
+      },
+      {
+        path: "/cart",
+        element: <CartPage />,
       },
     ],
     errorElement: <Error />,

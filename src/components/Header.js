@@ -3,12 +3,16 @@ import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import { useInternetCheck } from "../utils/useInternetCheck";
 import { UserContext } from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 export const Header = () => {
   const [isLoggedIn, setIsLoggedIn] = useState("Login");
 
   const isOnline = useInternetCheck();
-  const {loggedInUser} = useContext(UserContext);
+  const { loggedInUser } = useContext(UserContext);
+  // suscribing to store using Selector Hook
+  const cartCount = useSelector((store) => store.cart.items);
+  console.log(cartCount);
   return (
     <>
       <div className="flex justify-between items-center bg-pink-100 mb shadow-lg px-4">
@@ -37,8 +41,10 @@ export const Header = () => {
             <Link to="/grocery">
               <li className="m-2">Grocery</li>
             </Link>
-            <Link>
-              <li className="m-2">Cart</li>
+            <Link to="/cart">
+              <li className="m-2 font-bold">
+                Cart : ({cartCount?.length} items)
+              </li>
             </Link>
             <button
               className="m-2"

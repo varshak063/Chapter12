@@ -1,11 +1,16 @@
-High order component
+Zustand :Its a library used in state management
+Redux
 
-Takes a component and returns the component
+when we click on add button it dispatches an action which calls a function which modify the slice redux store 
 
+function is known as a reducer
+Write Data
+ADD button=> CLICK  --->DISPATCH(ACTION)  ---->REDUCER FUNCTION ----> UPDATES SLICE OF REDUX STORE
 
-//Controlled and uncontrolled component
-<!-- Props Drilling -->
-problem of passing props
+Read data:
+Selectore --->Give data known as subscribe to the store
 
-
-React Context
+Redux toolkit:
+  -install Redux toolkit @reduxjs/toolkit and react-redux
+  -Build our own store
+  -Connect to

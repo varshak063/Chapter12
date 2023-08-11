@@ -8,7 +8,7 @@ export const Body = () => {
   //State Variable in React
   const [fakeRestroDataList, setFakeRestroDataList] = useState([]);
   const [filteredRestro, setFilteredRestro] = useState([]);
-  console.log("list", fakeRestroDataList);
+  // console.log("list", fakeRestroDataList);
   const [searchTextVariable, setSearchTextVariable] = useState("");
 
   const RestaurantCardDiscount = withDiscountLabel(RestaurantCard);

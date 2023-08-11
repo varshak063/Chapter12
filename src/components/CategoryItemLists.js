@@ -1,7 +1,14 @@
 import { MENU_URL } from "../utils/constants";
+import { addItem } from "../utils/cartSlice";
+import { useDispatch } from "react-redux";
 
 export const CategoryItemList = ({ items }) => {
+  const dispatch = useDispatch();
   // console.log("items", items);
+  const handleItemAddCart = (item) => {
+    // Dispatch action
+    dispatch(addItem(item));
+  };
   return (
     <>
       <div>
@@ -26,7 +33,13 @@ export const CategoryItemList = ({ items }) => {
             </div>
             <div className="w-3/12 p-2">
               <div className="absolute m-1">
-                <button className="bg-white m-auto p-1 rounded-sm text-sm font-semibold">
+                <button
+                  className="bg-white m-auto p-1 rounded-sm text-sm font-semibold"
+                  onClick={
+                    () => handleItemAddCart(item)
+                    // DISPATCH AN ACTION
+                  }
+                >
                   Add +
                 </button>
               </div>
